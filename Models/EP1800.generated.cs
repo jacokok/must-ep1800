@@ -6,9 +6,9 @@ using Must.Modbus;
 namespace Must.Models
 {
     /// <summary>
-    /// The sensor definitions of the PH1800 series of inverters manufactured by Must Solar.
+    /// The sensor definitions of the EP1800 series of inverters manufactured by Must Solar.
     /// </summary>
-    public partial class Ph1800
+    public partial class EP1800
     {
 
 

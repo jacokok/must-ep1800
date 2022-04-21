@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Must.Models
 {
-    public partial class Ph1800
+    public partial class EP1800
     {
         [SensorInterpretation("battery", "%")]
         public short? BatteryPercent

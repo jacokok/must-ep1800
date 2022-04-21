@@ -1,6 +1,7 @@
 using System.IO.Ports;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Microsoft.Extensions.Options;
 using Must.Modbus;
 using Must.Models;
 
@@ -10,9 +11,9 @@ public class Poller
     private readonly Config _config;
     private readonly ILogger<Poller> _logger;
 
-    public Poller(Config config, ILogger<Poller> logger)
+    public Poller(IOptions<Config> config, ILogger<Poller> logger)
     {
-        _config = config;
+        _config = config.Value;
         _logger = logger;
     }
 
@@ -20,6 +21,7 @@ public class Poller
     {
         try
         {
+            return "test";
             using var port = new SerialPort(_config.PortName, 19200, Parity.None, 8, StopBits.One);
             port.Handshake = Handshake.None;
             port.DtrEnable = false;
@@ -36,7 +38,7 @@ public class Poller
             var reader = new ModbusReader(wrapper);
 
             ushort[] values;
-            Ph1800 modelPh = new();
+            EP1800 modelPh = new();
 
             values = ReadValues(reader, port, 4, 10001, 8);
             SensorToModelMapper.Map(10001, values, modelPh);
@@ -56,7 +58,7 @@ public class Poller
             values = ReadValues(reader, port, 4, 25201, 79);
             SensorToModelMapper.Map(25201, values, modelPh);
 
-            var json = JsonSerializer.Serialize<Ph1800>(modelPh, new JsonSerializerOptions()
+            var json = JsonSerializer.Serialize<EP1800>(modelPh, new JsonSerializerOptions()
             {
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 WriteIndented = true,
@@ -66,9 +68,7 @@ public class Poller
             _logger.LogInformation(json);
 
             port.Close();
-
-            _logger.LogInformation("Yes");
-            return "result";
+            return json;
         }
         catch (Exception ex)
         {

@@ -1,6 +1,5 @@
 using Quartz;
 using Serilog;
-using YamlDotNet.Serialization.NamingConventions;
 
 namespace Must;
 
@@ -9,10 +8,13 @@ public static class ScheduleHostBuilder
     public static IHostBuilder CreateHostBuilder(string[] args) =>
         Host.CreateDefaultBuilder(args)
             .UseSerilog()
-            .ConfigureServices((_, services) =>
+            .ConfigureServices((hostContext, services) =>
             {
-                var config = GetYamlConfig();
-                services.AddSingleton(config);
+                IConfiguration configuration = hostContext.Configuration;
+
+                Config config = new();
+                configuration.GetSection("Config").Bind(config);
+                services.Configure<Config>(configuration.GetSection("Config"));
 
                 services.AddQuartz(q =>
                 {
@@ -31,11 +33,11 @@ public static class ScheduleHostBuilder
                 services.AddSingleton<Poller>();
             });
 
-    public static Config GetYamlConfig()
-    {
-        var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
-        .WithNamingConvention(CamelCaseNamingConvention.Instance)
-        .Build();
-        return deserializer.Deserialize<Config>(File.ReadAllText("config.yml"));
-    }
+    // public static Config GetYamlConfig()
+    // {
+    //     var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
+    //     .WithNamingConvention(CamelCaseNamingConvention.Instance)
+    //     .Build();
+    //     return deserializer.Deserialize<Config>(File.ReadAllText("config.yml"));
+    // }
 }
