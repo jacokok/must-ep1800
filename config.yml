@@ -1,0 +1,2 @@
+portName: /dev/ttyUSB0
+cron: "0/15 * * * * ?"
