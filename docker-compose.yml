@@ -1,0 +1,13 @@
+version: "3"
+services:
+  must-ep1800:
+    image: localhost/must-ep1800
+    hostname: must-ep1800
+    container_name: must-ep1800
+    restart: always
+    environment:
+      ASPNETCORE_Config:PortName: "/dev/ttyUSB0"
+      ASPNETCORE_Config:Cron: "0/2 * * * * ?"
+    devices:
+      - /dev/ttyUSB0:/dev/ttyUSB0:rwm
+    privileged: true

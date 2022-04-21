@@ -32,12 +32,4 @@ public static class ScheduleHostBuilder
                 services.AddSingleton<PollJob>();
                 services.AddSingleton<Poller>();
             });
-
-    // public static Config GetYamlConfig()
-    // {
-    //     var deserializer = new YamlDotNet.Serialization.DeserializerBuilder()
-    //     .WithNamingConvention(CamelCaseNamingConvention.Instance)
-    //     .Build();
-    //     return deserializer.Deserialize<Config>(File.ReadAllText("config.yml"));
-    // }
 }
