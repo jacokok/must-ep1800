@@ -10,7 +10,7 @@ Make sure the user has permissions to access /dev/ttyUSB0. Could also run in pri
 
 ```bash
 sudo usermod -a -G dialout $USER # might have to logout or reboot after this
-docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0 0/5 * * * ?' doink/must-ep1800
+docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0 0/5 * * * ?' -e MUST_CONFIG__MqttServer='serverNameOrIP' -e MUST_CONFIG__MqttUserName='username' -e MUST_CONFIG__MqttPassword='pass' doink/must-ep1800
 ```
 
 ## Docker Compose
@@ -27,6 +27,7 @@ services:
       MUST_Config__Cron: "0/2 * * * * ?"
       MUST_Config__IsTest: false
       MUST_Config__PortName: "/dev/ttyUSB0"
+      MUST_CONFIG__MqttServer: 191.323.23.23
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0:rwm
     # privileged: true
@@ -56,9 +57,3 @@ lsusb
 # Find ttyUSB devices
 ls /dev | grep ttyUSB
 ```
-
-## ToDo
-
-- [ ] Add MQTT Client
-- [ ] Add MQTT ENV and Config
-- [ ] Push json data to HOME Assistant compatible way over MQTT

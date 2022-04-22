@@ -14,7 +14,6 @@ public class StartupHostedService : IHostedService
     public async Task StartAsync(CancellationToken cancellationToken)
     {
         await _mqttClient.Init();
-        await _mqttClient.Publish("WorkStateNo", "200");
     }
 
     public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;

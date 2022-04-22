@@ -1,4 +1,5 @@
 using Microsoft.Extensions.Options;
+using Must.Mqtt;
 using Quartz;
 
 namespace Must;
@@ -9,15 +10,17 @@ public class PollJob : IJob
     private readonly Config _config;
     private readonly Poller _poller;
     private readonly Tester _tester;
-    public PollJob(ILogger<PollJob> logger, IOptions<Config> config, Poller poller, Tester tester)
+    private readonly MqttClient _mqttClient;
+    public PollJob(ILogger<PollJob> logger, IOptions<Config> config, Poller poller, Tester tester, MqttClient mqttClient)
     {
         _logger = logger;
         _config = config.Value;
         _poller = poller;
         _tester = tester;
+        _mqttClient = mqttClient;
     }
 
-    public Task Execute(IJobExecutionContext context)
+    public async Task Execute(IJobExecutionContext context)
     {
         if (_config.IsTest)
         {
@@ -27,9 +30,13 @@ public class PollJob : IJob
         }
         else
         {
-            _logger.LogInformation("Result! {json}", _poller.GetJSON());
-        }
+            string json = _poller.GetJSON();
+            _logger.LogInformation("{json}", json);
 
-        return Task.CompletedTask;
+            foreach (PublishPayload payload in MqttHelper.JsonToPublishList(json))
+            {
+                await _mqttClient.Publish(payload.Topic, payload.Value);
+            }
+        }
     }
 }
