@@ -6,8 +6,9 @@ services:
     container_name: must-ep1800
     restart: always
     environment:
-      ASPNETCORE_Config:PortName: "/dev/ttyUSB0"
-      ASPNETCORE_Config:Cron: "0/2 * * * * ?"
+      MUST_Config__Cron: "0/2 * * * * ?"
+      MUST_Config__IsTest: false
+      MUST_Config__PortName: "/dev/ttyUSB0"
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0:rwm
-    privileged: true
+    # privileged: true

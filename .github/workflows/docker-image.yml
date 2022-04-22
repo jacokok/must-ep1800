@@ -27,3 +27,11 @@ jobs:
           push: true
           tags: doink/must-ep1800:latest, doink/must-ep1800:${{env.version}}
           platforms: linux/amd64,linux/arm64
+      - name: Sync DockerHub Readme
+        uses: meeDamian/sync-readme@v1.0.6
+        with:
+          user: ${{ secrets.DOCKERHUB_USER }}
+          pass: ${{ secrets.DOCKERHUB_PASSWORD }}
+          slug: doink/must-ep1800
+          readme: ./README.md
+          description: true
