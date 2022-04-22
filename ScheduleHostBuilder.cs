@@ -1,3 +1,4 @@
+using Must.Extensions;
 using Quartz;
 using Serilog;
 
@@ -15,6 +16,8 @@ public static class ScheduleHostBuilder
                 Config config = new();
                 configuration.GetSection("Config").Bind(config);
                 services.Configure<Config>(configuration.GetSection("Config"));
+
+                services.ConfigureMQTTClient(configuration);
 
                 services.AddQuartz(q =>
                 {
