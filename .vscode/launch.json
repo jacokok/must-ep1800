@@ -9,8 +9,8 @@
       "program": "${workspaceFolder}/bin/Debug/net6.0/must-ep1800.dll",
       "args": [],
       "env": {
-        "MUST_Config__Cron": "0/5 * * * * ?",
-        "MUST_Config__IsTest": "true"
+        // "MUST_Config__Cron": "0/5 * * * * ?",
+        "MUST_Config__IsTest": "false"
       },
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",

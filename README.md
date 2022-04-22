@@ -36,11 +36,17 @@ services:
 
 [quartz]: https://www.quartz-scheduler.net/documentation/quartz-3.x/tutorial/crontriggers.html#example-cron-expressions
 
-| Env                   | Description                                                  |
-| --------------------- | ------------------------------------------------------------ |
-| MUST_Config__Cron     | Quartz cron expression. [Docs][quartz]                       |
-| MUST_Config__IsTest   | Run in test mode with serial logging and scheduling disabled |
-| MUST_Config__PortName | Location where usb serial device is mounted. /dev/ttyUSB0    |
+| Env                         | Description                                                  |
+| --------------------------- | ------------------------------------------------------------ |
+| MUST_Config__Cron           | Quartz cron expression. [Docs][quartz]                       |
+| MUST_Config__IsTest         | Run in test mode with serial logging and scheduling disabled |
+| MUST_Config__PortName       | Location where usb serial device is mounted. /dev/ttyUSB0    |
+| MUST_CONFIG__MqttServer     | Mqtt Server                                                  |
+| MUST_CONFIG__MqttPort       | Mqtt Port. Default: 1883                                     |
+| MUST_CONFIG__MqttTopic      | Default: homeassistant                                       |
+| MUST_CONFIG__MqttDeviceName | Default: must-inverter                                       |
+| MUST_CONFIG__MqttUserName   | Mqtt UserName                                                |
+| MUST_CONFIG__MqttPassword   | Mqtt Password                                                |
 
 ## How to find the port
 

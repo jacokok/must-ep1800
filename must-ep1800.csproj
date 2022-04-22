@@ -8,15 +8,9 @@
     <RootNamespace>Must</RootNamespace>
   </PropertyGroup>
 
-  <!-- <ItemGroup>
-    <Content Include="appsettings.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup> -->
-
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
-    <PackageReference Include="mqttnet" Version="3.1.2" />
+    <PackageReference Include="mqttnet" Version="4.0.0-preview5" />
     <PackageReference Include="Quartz.Extensions.DependencyInjection" Version="3.4.0" />
     <PackageReference Include="Quartz.Extensions.Hosting" Version="3.4.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />

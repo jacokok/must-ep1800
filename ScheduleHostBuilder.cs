@@ -18,6 +18,7 @@ public static class ScheduleHostBuilder
                 services.Configure<Config>(configuration.GetSection("Config"));
 
                 services.ConfigureMQTTClient(configuration);
+                services.AddHostedService<StartupHostedService>();
 
                 services.AddQuartz(q =>
                 {
