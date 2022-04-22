@@ -70,15 +70,15 @@ public static class MqttHelper
         new RegisterTopic { Name = "AccumulatedHour", UnitOfMeasurement = "hour", Icon = "clock-outline" },
         new RegisterTopic { Name = "AccumulatedMinute", UnitOfMeasurement = "min", Icon = "timer-outline" },
         new RegisterTopic { Name = "BatteryPercent", UnitOfMeasurement = "%", Icon = "battery" },
-        new RegisterTopic { Name = "AccumulatedChargerPower", UnitOfMeasurement = "KWH", Icon = "chart-bell-curve-cumulative" },
-        new RegisterTopic { Name = "AccumulatedDischargerPower", UnitOfMeasurement = "KWH", Icon = "chart-bell-curve-cumulative" },
-        new RegisterTopic { Name = "AccumulatedBuyPower", UnitOfMeasurement = "KWH", Icon = "chart-bell-curve-cumulative" },
-        new RegisterTopic { Name = "AccumulatedSellPower", UnitOfMeasurement = "KWH", Icon = "chart-bell-curve-cumulative" },
-        new RegisterTopic { Name = "AccumulatedLoadPower", UnitOfMeasurement = "KWH", Icon = "chart-bell-curve-cumulative" },
-        new RegisterTopic { Name = "AccumulatedSelfusePower", UnitOfMeasurement = "KWH", Icon = "chart-bell-curve-cumulative" },
-        new RegisterTopic { Name = "AccumulatedPvsellPower", UnitOfMeasurement = "KWH", Icon = "chart-bell-curve-cumulative" },
-        new RegisterTopic { Name = "AccumulatedGridChargerPower", UnitOfMeasurement = "KWH", Icon = "chart-bell-curve-cumulative" },
-        new RegisterTopic { Name = "AccumulatedPvPower", UnitOfMeasurement = "KWH", Icon = "chart-bell-curve-cumulative" }
+        new RegisterTopic { Name = "AccumulatedChargerPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
+        new RegisterTopic { Name = "AccumulatedDischargerPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
+        new RegisterTopic { Name = "AccumulatedBuyPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
+        new RegisterTopic { Name = "AccumulatedSellPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
+        new RegisterTopic { Name = "AccumulatedLoadPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
+        new RegisterTopic { Name = "AccumulatedSelfusePower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
+        new RegisterTopic { Name = "AccumulatedPvsellPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
+        new RegisterTopic { Name = "AccumulatedGridChargerPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
+        new RegisterTopic { Name = "AccumulatedPvPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" }
     };
 
     public static readonly JsonSerializerOptions SerializeOptions = new()
@@ -96,8 +96,7 @@ public static class MqttHelper
             return results;
         }
 
-        var properties = model.GetType().GetProperties();
-        foreach (var prop in properties)
+        foreach (var prop in model.GetType().GetProperties())
         {
             var matches = Topics.Any(p => p.Name == prop.Name);
             if (matches)

@@ -10,7 +10,8 @@
       "args": [],
       "env": {
         // "MUST_Config__Cron": "0/5 * * * * ?",
-        "MUST_Config__IsTest": "false"
+        "MUST_Config__IsTest": "false",
+        "DOTNET_ENVIRONMENT": "Development"
       },
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",

@@ -28,6 +28,7 @@ services:
       MUST_Config__IsTest: false
       MUST_Config__PortName: "/dev/ttyUSB0"
       MUST_CONFIG__MqttServer: 191.323.23.23
+      MUST_Serilog__MinimumLevel: "INFO"
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0:rwm
     # privileged: true
@@ -48,6 +49,7 @@ services:
 | MUST_CONFIG__MqttDeviceName | Default: must-inverter                                       |
 | MUST_CONFIG__MqttUserName   | Mqtt UserName                                                |
 | MUST_CONFIG__MqttPassword   | Mqtt Password                                                |
+| MUST_Serilog__MinimumLevel  | Default: Error                                               |
 
 ## How to find the port
 

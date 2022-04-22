@@ -13,6 +13,11 @@ public static class ScheduleHostBuilder
             {
                 IConfiguration configuration = hostContext.Configuration;
 
+                Log.Logger = new LoggerConfiguration()
+                    .WriteTo.Console()
+                    .ReadFrom.Configuration(configuration)
+                    .CreateLogger();
+
                 Config config = new();
                 configuration.GetSection("Config").Bind(config);
                 services.Configure<Config>(configuration.GetSection("Config"));
@@ -30,14 +35,14 @@ public static class ScheduleHostBuilder
                     }
                     else
                     {
-                        q.AddJob<PollJob>(opts => opts
-                            .WithIdentity("Poll"));
-                        q.AddTrigger(opts => opts
-                            .ForJob("Poll")
-                            .WithIdentity("PollTrigger")
-                            .WithCronSchedule(config.Cron));
+                        q.ScheduleJob<PollJob>(trigger => trigger
+                            .WithIdentity("PollStart")
+                            .StartNow());
+
                         q.ScheduleJob<PollJob>(trigger => trigger
                             .WithIdentity("Poll")
+                            .ForJob("Poll")
+                            .WithCronSchedule(config.Cron)
                             .StartNow());
                     }
 
