@@ -31,7 +31,8 @@ public static class ScheduleHostBuilder
                         q.AddTrigger(opts => opts
                             .ForJob("Poll")
                             .WithIdentity("PollTrigger")
-                            .WithCronSchedule(config.Cron));
+                            .WithCronSchedule(config.Cron)
+                            .StartNow());
                     }
 
                     q.UseMicrosoftDependencyInjectionJobFactory();
