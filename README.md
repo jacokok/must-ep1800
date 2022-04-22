@@ -6,8 +6,11 @@ This is different enough to not fork but most code comes from [github](https://g
 
 ## Docker
 
+Make sure the user has permissions to access /dev/ttyUSB0. Could also run in privileged but not recommended.
+
 ```bash
-docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0 0/5 * * * ?' doink/must-ep1800 -e 
+sudo usermod -a -G dialout $USER # might have to logout or reboot after this
+docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0 0/5 * * * ?' doink/must-ep1800
 ```
 
 ## Docker Compose
@@ -26,6 +29,7 @@ services:
       MUST_Config__PortName: "/dev/ttyUSB0"
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0:rwm
+    # privileged: true
 ```
 
 ## Env
