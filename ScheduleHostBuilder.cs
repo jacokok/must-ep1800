@@ -18,12 +18,21 @@ public static class ScheduleHostBuilder
 
                 services.AddQuartz(q =>
                 {
-                    q.AddJob<PollJob>(opts => opts.WithIdentity("Poll"));
-
-                    q.AddTrigger(opts => opts
-                        .ForJob("Poll")
-                        .WithIdentity("PollTrigger")
-                        .WithCronSchedule(config.Cron));
+                    if (config.IsTest)
+                    {
+                        q.ScheduleJob<PollJob>(trigger => trigger
+                            .WithIdentity("Test")
+                            .StartNow());
+                    }
+                    else
+                    {
+                        q.AddJob<PollJob>(opts => opts
+                            .WithIdentity("Poll"));
+                        q.AddTrigger(opts => opts
+                            .ForJob("Poll")
+                            .WithIdentity("PollTrigger")
+                            .WithCronSchedule(config.Cron));
+                    }
 
                     q.UseMicrosoftDependencyInjectionJobFactory();
                 });
@@ -31,5 +40,7 @@ public static class ScheduleHostBuilder
                 services.AddQuartzHostedService(q => q.WaitForJobsToComplete = true);
                 services.AddSingleton<PollJob>();
                 services.AddSingleton<Poller>();
-            });
+                services.AddSingleton<Tester>();
+            })
+            .ConfigureAppConfiguration(configHost => configHost.AddEnvironmentVariables(prefix: "MUST_"));
 }

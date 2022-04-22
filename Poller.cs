@@ -38,27 +38,27 @@ public class Poller
             var reader = new ModbusReader(wrapper);
 
             ushort[] values;
-            EP1800 modelPh = new();
+            EP1800 model = new();
 
             values = ReadValues(reader, port, 4, 10001, 8);
-            SensorToModelMapper.Map(10001, values, modelPh);
+            SensorToModelMapper.Map(10001, values, model);
 
             values = ReadValues(reader, port, 4, 10103, 10);
-            SensorToModelMapper.Map(10103, values, modelPh);
+            SensorToModelMapper.Map(10103, values, model);
 
             values = ReadValues(reader, port, 4, 15201, 21);
-            SensorToModelMapper.Map(15201, values, modelPh);
+            SensorToModelMapper.Map(15201, values, model);
 
             values = ReadValues(reader, port, 4, 20000, 17);
-            SensorToModelMapper.Map(20000, values, modelPh);
+            SensorToModelMapper.Map(20000, values, model);
 
             values = ReadValues(reader, port, 4, 20101, 43);
-            SensorToModelMapper.Map(20101, values, modelPh);
+            SensorToModelMapper.Map(20101, values, model);
 
             values = ReadValues(reader, port, 4, 25201, 79);
-            SensorToModelMapper.Map(25201, values, modelPh);
+            SensorToModelMapper.Map(25201, values, model);
 
-            var json = JsonSerializer.Serialize<EP1800>(modelPh, new JsonSerializerOptions()
+            var json = JsonSerializer.Serialize<EP1800>(model, new JsonSerializerOptions()
             {
                 DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
                 WriteIndented = true,
@@ -72,7 +72,7 @@ public class Poller
         }
         catch (Exception ex)
         {
-            _logger.LogInformation($"Error {ex.Message}");
+            _logger.LogInformation("Error {message}", ex.Message);
             throw;
         }
     }

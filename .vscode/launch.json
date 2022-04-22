@@ -8,6 +8,10 @@
       "preLaunchTask": "build",
       "program": "${workspaceFolder}/bin/Debug/net6.0/must-ep1800.dll",
       "args": [],
+      "env": {
+        "MUST_Config__Cron": "0/5 * * * * ?",
+        "MUST_Config__IsTest": "true"
+      },
       "cwd": "${workspaceFolder}",
       "console": "internalConsole",
       "stopAtEntry": false
