@@ -77,7 +77,7 @@ public class Tester
 
             _logger.LogInformation("got {Length} values in {Diff} ms", values.Length, end - start);
         }
-        catch (TimeoutException ex)
+        catch (TimeoutException)
         {
             _logger.LogInformation("Timeout Exception: {BytesToRead} bytes are available to read.", port.BytesToRead);
         }

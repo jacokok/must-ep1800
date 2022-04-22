@@ -21,7 +21,6 @@ public class Poller
     {
         try
         {
-            return "test";
             using var port = new SerialPort(_config.PortName, 19200, Parity.None, 8, StopBits.One);
             port.Handshake = Handshake.None;
             port.DtrEnable = false;
