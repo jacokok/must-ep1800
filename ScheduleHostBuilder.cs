@@ -35,7 +35,9 @@ public static class ScheduleHostBuilder
                         q.AddTrigger(opts => opts
                             .ForJob("Poll")
                             .WithIdentity("PollTrigger")
-                            .WithCronSchedule(config.Cron)
+                            .WithCronSchedule(config.Cron));
+                        q.ScheduleJob<PollJob>(trigger => trigger
+                            .WithIdentity("Poll")
                             .StartNow());
                     }
 
