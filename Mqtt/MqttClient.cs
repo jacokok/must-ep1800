@@ -48,7 +48,9 @@ public class MqttClient
                     Name = $"{_config.MqttDeviceName}_{topic.Name}",
                     Topic = $"{_config.MqttTopic}/sensor/{_config.MqttDeviceName}/{topic.Name}",
                     Icon = $"mdi:{topic.Icon}",
-                    UnitOfMeasurement = topic.UnitOfMeasurement
+                    UnitOfMeasurement = topic.UnitOfMeasurement,
+                    DeviceClass = topic.DeviceClass,
+                    StateClass = topic.StateClass
                 };
 
                 string json = JsonSerializer.Serialize(p, MqttHelper.SerializeOptions);

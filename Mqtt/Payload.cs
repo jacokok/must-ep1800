@@ -10,4 +10,8 @@ public class Payload
     [JsonPropertyName("state_topic")]
     public string Topic { get; set; } = "";
     public string Icon { get; set; } = "";
+    [JsonPropertyName("device_class")]
+    public string? DeviceClass { get; set; }
+    [JsonPropertyName("state_class")]
+    public string? StateClass { get; set; }
 }
