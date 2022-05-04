@@ -10,7 +10,8 @@ Make sure the user has permissions to access /dev/ttyUSB0. Could also run in pri
 
 ```bash
 sudo usermod -a -G dialout $USER # might have to logout or reboot after this
-docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0 0/5 * * * ?' -e MUST_CONFIG__MqttServer='serverNameOrIP' -e MUST_CONFIG__MqttUserName='username' -e MUST_CONFIG__MqttPassword='pass' doink/must-ep1800
+# Run every 30 seconds
+docker run -d --device=/dev/ttyUSB0 -e MUST_Config__Cron='0/30 * * * * ?' -e MUST_CONFIG__MqttServer='serverNameOrIP' -e MUST_CONFIG__MqttUserName='username' -e MUST_CONFIG__MqttPassword='pass' doink/must-ep1800
 ```
 
 ## Docker Compose
