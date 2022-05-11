@@ -74,12 +74,12 @@ public static class MqttHelper
         new RegisterTopic { Name = "AccumulatedChargerPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
         new RegisterTopic { Name = "AccumulatedDischargerPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
         new RegisterTopic { Name = "AccumulatedBuyPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
-        new RegisterTopic { Name = "AccumulatedSellPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
+        new RegisterTopic { Name = "AccumulatedSellPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
         new RegisterTopic { Name = "AccumulatedLoadPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
         new RegisterTopic { Name = "AccumulatedSelfusePower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
-        new RegisterTopic { Name = "AccumulatedPvsellPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
-        new RegisterTopic { Name = "AccumulatedGridChargerPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" },
-        new RegisterTopic { Name = "AccumulatedPvPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative" }
+        new RegisterTopic { Name = "AccumulatedPvsellPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
+        new RegisterTopic { Name = "AccumulatedGridChargerPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" },
+        new RegisterTopic { Name = "AccumulatedPvPower", UnitOfMeasurement = "kWh", Icon = "chart-bell-curve-cumulative", DeviceClass = "energy", StateClass = "total_increasing" }
     };
 
     public static readonly JsonSerializerOptions SerializeOptions = new()
